@@ -36,18 +36,23 @@ public class MovementInput : MonoBehaviour {
     public float verticalVel;
     private Vector3 moveVector;
 
+	Rigidbody rb;
+	public float JumpSpeed;
+
 	// Use this for initialization
 	void Start () {
 		anim = this.GetComponent<Animator> ();
 		cam = Camera.main;
 		controller = this.GetComponent<CharacterController> ();
+		rb = GetComponent<Rigidbody>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+
+    // Update is called once per frame
+    void Update () {
 		InputMagnitude ();
 
-        isGrounded = controller.isGrounded;
+		isGrounded = controller.isGrounded;
         if (isGrounded)
         {
             verticalVel -= 0;
@@ -58,13 +63,13 @@ public class MovementInput : MonoBehaviour {
         }
         moveVector = new Vector3(0, verticalVel * .2f * Time.deltaTime, 0);
         controller.Move(moveVector);
-
-
-    }
-
+	}
+		
     void PlayerMoveAndRotation() {
 		InputX = Input.GetAxis ("Horizontal");
 		InputZ = Input.GetAxis ("Vertical");
+
+		
 
 		var camera = Camera.main;
 		var forward = cam.transform.forward;
