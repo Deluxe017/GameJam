@@ -22,10 +22,8 @@ public class MovementInput : MonoBehaviour {
 	public Camera cam;
 	public CharacterController controller;
 	public bool isGrounded;
-    Rigidbody rb;
 
-
-	[Header("Animation Smoothing")]
+    [Header("Animation Smoothing")]
     [Range(0, 1f)]
     public float HorizontalAnimSmoothTime = 0.2f;
     [Range(0, 1f)]
@@ -35,11 +33,7 @@ public class MovementInput : MonoBehaviour {
     [Range(0, 1f)]
     public float StopAnimTime = 0.15f;
 
-
-	public float JumpSpeed;
-
-
-	public float verticalVel;
+    public float verticalVel;
     private Vector3 moveVector;
 
 	// Use this for initialization
@@ -48,7 +42,7 @@ public class MovementInput : MonoBehaviour {
 		cam = Camera.main;
 		controller = this.GetComponent<CharacterController> ();
 	}
-
+	
 	// Update is called once per frame
 	void Update () {
 		InputMagnitude ();
@@ -65,7 +59,8 @@ public class MovementInput : MonoBehaviour {
         moveVector = new Vector3(0, verticalVel * .2f * Time.deltaTime, 0);
         controller.Move(moveVector);
 
-	}
+
+    }
 
     void PlayerMoveAndRotation() {
 		InputX = Input.GetAxis ("Horizontal");
@@ -111,15 +106,11 @@ public class MovementInput : MonoBehaviour {
 		InputX = Input.GetAxis ("Horizontal");
 		InputZ = Input.GetAxis ("Vertical");
 
-		
+		//anim.SetFloat ("InputZ", InputZ, VerticalAnimTime, Time.deltaTime * 2f);
+		//anim.SetFloat ("InputX", InputX, HorizontalAnimSmoothTime, Time.deltaTime * 2f);
 
-
-
-			//anim.SetFloat ("InputZ", InputZ, VerticalAnimTime, Time.deltaTime * 2f);
-			//anim.SetFloat ("InputX", InputX, HorizontalAnimSmoothTime, Time.deltaTime * 2f);
-
-			//Calculate the Input Magnitude
-			Speed = new Vector2(InputX, InputZ).sqrMagnitude;
+		//Calculate the Input Magnitude
+		Speed = new Vector2(InputX, InputZ).sqrMagnitude;
 
         //Physically move player
 
@@ -129,17 +120,5 @@ public class MovementInput : MonoBehaviour {
 		} else if (Speed < allowPlayerRotation) {
 			anim.SetFloat ("Blend", Speed, StopAnimTime, Time.deltaTime);
 		}
-
-
-
 	}
-
-	public void FixedUpdate()
-    {
-		if (Input.GetKey("space") && IsGround.isGround)
-		{
-			rb.velocity = new Vector2(rb.velocity.x, JumpSpeed);
-		}
-	}
-
 }
