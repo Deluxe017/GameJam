@@ -7,6 +7,7 @@ TagManager:
   - Manzana
   - Cereza
   - Melon
+  - Money
   layers:
   - Default
   - TransparentFX
