@@ -19,6 +19,7 @@ public class Frutas_Contador : MonoBehaviour
     public GameObject Manzana_image;
     public GameObject Cherry_image;
     public GameObject Melon_image;
+    public GameObject Dinero_image;
 
     void Start()
     {
@@ -47,39 +48,63 @@ public class Frutas_Contador : MonoBehaviour
         }
 
         // Dinero 
+
         if(collision.gameObject.tag == "Money")
         {
-            if(Score_M > 0) 
+
+            //Manzana Money 
+
+            while(Score_M > 0) 
             {
                Score_M--;
                Manzanas.text = "" + Score_M;
 
-                if(Score_M == 0)
+                if(Score_M >= 0)
                 {
                     Money += 10;
-                    Money_.text = "Dinero = " + "" + Money;
+                    Money_.text = "" + Money;
+                }
+
+                if(Score_M == 0)
+                {
+                    break;
                 }
             }
-            if (Score_C > 0)
+
+            // Cereza Money
+
+            while(Score_C > 0)
             {
                Score_C--;
                Cereza.text = "" + Score_C;
 
-                if (Score_C >= 0)
+                if (Score_C <= 100)
                 {
                     Money += 10;
-                    Money_.text = "Dinero = " + "" + Money;
+                    Money_.text =  "" + Money;
+                }
+
+                if(Score_C == 0)
+                {
+                    break;
                 }
             }
-            if (Score_W > 0)
+
+            // Melon Money
+
+            while(Score_W > 0)
             {
                 Score_W--;
                 Melon.text = "" + Score_W;
 
-                if (Score_W >= 0)
+                if (Score_W <= 100)
                 {
                     Money += 10;
-                    Money_.text = "Dinero = " + "" + Money;
+                    Money_.text = "" + Money;
+                }
+                if(Score_W == 0)
+                {
+                    break;
                 }
             } 
         }
