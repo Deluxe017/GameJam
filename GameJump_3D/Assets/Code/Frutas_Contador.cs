@@ -16,14 +16,28 @@ public class Frutas_Contador : MonoBehaviour
     public TextMeshProUGUI Cereza;
     public TextMeshProUGUI Money_;
 
-    public GameObject Manzana_image;
-    public GameObject Cherry_image;
-    public GameObject Melon_image;
-    public GameObject Dinero_image;
+
+
+    public GameObject Carnet_;
 
     void Start()
     {
         Score_M = 0;
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown("e"))
+        {
+            Debug.Log("Hola");
+            Carnet_.SetActive(true);
+
+        }
+        if (Input.GetKeyUp("e")) 
+        {
+            Debug.Log("Bay");
+            Carnet_.SetActive(false);
+
+        }
     }
     private void OnTriggerEnter(Collider collision)
     {
@@ -31,20 +45,20 @@ public class Frutas_Contador : MonoBehaviour
         {
             Score_M++;
             Manzanas.text = "" + Score_M;
-            Manzana_image.SetActive(true);
+           
             
         } 
         if (collision.gameObject.tag == "Melon")
         {
             Score_C++;
             Melon.text = "" + Score_C;        
-            Melon_image.SetActive(true);
+            
         }
         if (collision.gameObject.tag == "Cereza")
         {
             Score_W++;
             Cereza.text = "" + Score_W;
-            Cherry_image.SetActive(true);
+          
         }
 
         // Dinero 
