@@ -22,6 +22,7 @@ public class Frutas_Contador : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         Score_M = 0;
     }
     private void Update()
